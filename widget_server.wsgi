@@ -10,8 +10,7 @@ import re
 import string
 import sys
 
-from boto.s3.connection import S3Connection
-from cgi import escape
+from cgi import parse_qs, escape
 from dateutil import parser
 from git import Repo
 from wsgiref.simple_server import make_server
@@ -57,15 +56,13 @@ def index(environ, start_response):
 
 
 urls = [
-    (r'^diagnostics$', diagnostic_backups),
-    (r'^diagnostics/view/(.+)$', view),
-    (r'^jenkins-merge-cop$', jenkins_merge_cop),
-    (r'^jenkins-merge-cop/(.+)$', jenkins_merge_cop),
-    (r'^graphite$', graphite),
-    (r'^graphite/(.+)$', graphite),
-    (r'^graphs/?$', graphs),
-    (r'^graphs/(.+)$', graphs),
-    (r'^newgraph$', newgraph),
+    (r'^order$', order),
+    (r'^order/add$', order_add),
+#    (r'^order/edit/(.+)$', order_edit),
+#    (r'^order/view/(.+)$', view),
+    (r'^items$', items),
+    (r'^items/edit/(.+)$', item_edit),
+    (r'^items/add$', item_add),
     (r'^/?$', index)
 ]
 
